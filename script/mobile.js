@@ -79,6 +79,12 @@ function load_report(){
 
 function show_report(par){
     var pel = document.getElementById('report_table');
+    
+    var mass_old_elem = document.getElementsByClassName('main_rep_str');
+    for(var i=mass_old_elem.length; i>1; i--){
+        pel.removeChild(mass_old_elem[i-1]);
+    }
+    
     var mass = par.split(';');
     for(var i=0; i<mass.length-1; i++){
         var mass_el = mass[i].split(':');
@@ -156,15 +162,31 @@ function change_type_invest(){
     }
 }
 
-function open_form(){
+function open_form(par){
     document.getElementById('pelena').style.display = "block";
+    if(par.id == "add_invest"){
+        document.getElementById('red_form').style.display = "block";
+    }
+    if(par.className.indexOf("invest") != -1){
+        document.getElementById('red_inv').style.display = "block";
+        document.getElementById('red_inv').setAttribute("data-id", par.id);
+    }
+    if(par.id == "main_box"){
+        document.getElementById('add_inp').style.display = "block";
+    }
 }
 
 function close_form(){
     document.getElementById('name_i').value = '';
     document.getElementById('srok_i').checked = false;
     document.getElementById('need_i').value = '';
+    document.getElementById('oper_sum').value = '';
+    document.getElementById('sum_prih').value = '';
+    document.getElementById('prih_comment').value = '';
     document.getElementById('need_l').style.display = 'none';
+    document.getElementById('red_form').style.display = "none";
+    document.getElementById('red_inv').style.display = "none";
+    document.getElementById('add_inp').style.display = "none";
     document.getElementById('pelena').style.display = 'none';
 }
 
@@ -191,43 +213,46 @@ function save_invest_ok(par){
     }
 }
 
-function investing(par){
+function investing(){
     var dat = document.getElementById('oper_dat').textContent;
     var year_p = dat.substring(6);
     var month_p = dat.substring(3,5);
     var day_p = dat.substring(0,2);
     dat = year_p + "-" + month_p + "-" + day_p;
-    var pel = par.parentElement;
-    var cash = pel.getElementsByTagName('input')[0].value;
-    var url = "/serv/investing.php?id="+pel.id+"&dat="+dat+"&cash="+cash;
+    var par = document.getElementById("red_inv");
+    var id = par.getAttribute("data-id");
+    var cash = document.getElementById('oper_sum').value;
+    var url = "/serv/investing.php?id="+id+"&dat="+dat+"&cash="+cash;
     ajax_f(url,"text",investing_ok);
 }
            
 function investing_ok(par){
     var mass = par.split(':');
     var elem = document.getElementById(mass[0]);
-    elem.getElementsByTagName('input')[0].value = '';
-    elem.children[2].textContent = (mass[1]==''?0:parseInt(mass[1]))-(mass[2]==''?0:parseInt(mass[2]));
+    elem.children[1].textContent = (mass[1]==''?0:parseInt(mass[1]))-(mass[2]==''?0:parseInt(mass[2]));
+    close_form();
     load_nalik();
 }
 
-function resting(par){
+function resting(){
     var dat = document.getElementById('oper_dat').textContent;
     var year_p = dat.substring(6);
     var month_p = dat.substring(3,5);
     var day_p = dat.substring(0,2);
     dat = year_p + "-" + month_p + "-" + day_p;
-    var pel = par.parentElement;
-    var cash = pel.getElementsByTagName('input')[0].value;
-    var url = "/serv/resting.php?id="+pel.id+"&dat="+dat+"&cash="+cash;
+    var par = document.getElementById("red_inv");
+    var id = par.getAttribute("data-id");
+    var cash = document.getElementById('oper_sum').value;
+    var url = "/serv/resting.php?id="+id+"&dat="+dat+"&cash="+cash;
     ajax_f(url,"text",resting_ok);
 }
 
 function resting_ok(par){
     var mass = par.split(':');
     var elem = document.getElementById(mass[0]);
-    elem.getElementsByTagName('input')[0].value = '';
-    elem.children[2].textContent = (mass[1]==''?0:parseInt(mass[1]))-(mass[2]==''?0:parseInt(mass[2]));
+    elem.children[1].textContent = (mass[1]==''?0:parseInt(mass[1]))-(mass[2]==''?0:parseInt(mass[2]));
+    close_form();
+    load_report();
 }
 
 

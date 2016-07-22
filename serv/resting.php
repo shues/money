@@ -14,20 +14,24 @@
     
     $query = "
         SELECT 
-            SUM(`cash`)-(
-                SELECT 
-                    SUM(`cash`) 
-                FROM 
-                    `invest_out` 
-                WHERE 
-                    `invest`='$invest') 
+            SUM(`cash`)                 
         FROM 
             `invest_inp` 
         WHERE 
             `invest`='$invest'";
         
     $res = mysqli_query($db,$query);
-    $sum = mysqli_fetch_array($res)[0];
-    echo $invest.':'.$sum;
+    $sum1 = mysqli_fetch_array($res)[0];
+    $query = "
+        SELECT 
+            SUM(`cash`) 
+        FROM 
+            `invest_out` 
+        WHERE 
+            `invest`='$invest'";
+
+    $res = mysqli_query($db,$query);
+    $sum2 = mysqli_fetch_array($res)[0];
+    echo $invest.':'.$sum1.':'.$sum2;
     mysqli_close($db);
 ?>

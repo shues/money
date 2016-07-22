@@ -139,27 +139,49 @@ body{
     display: none;
 }
 
+#add_inp button{
+    width: 48.5%;
+}
+
 #red_inv{
     display: none;
 }
 
+#red_inv button{
+    width: 31%;
+}
+
 #red_form{
+    display: none;
+}
+
+.modal_form{
     position: fixed;
     z-index: 9999;
     padding: 30px;
     background-color: antiquewhite;
     border-radius: 10px;
     top:36%;
-    left: 16%;
+    left: 10%;
     font-size: 40px;
 }
 
-#red_form button{
+.modal_form button{
     font-size: inherit;
 }
 
-#red_form input{
+.modal_form input{
     font-size: inherit;
+}
+
+.modal_form select{
+    font-size: inherit;
+    width: 100%;
+}
+
+.modal_form textarea{
+    font-size: inherit;
+    width: 97%;
 }
 
 

@@ -15,16 +15,16 @@
             <div id="oper_dat"></div>
             <div id="plus_data" onclick="plus_data();"></div>
         </div>
-    <div id="main_box" class="mobile">
+    <div id="main_box" class="mobile" onclick="open_form(this);">
         <b id="free_nal">0</b>
     </div>
-    <div id="add_invest" onclick="open_form();" class="mobile">Новая инвестиция</div>
+    <div id="add_invest" onclick="open_form(this);" class="mobile">Новая инвестиция</div>
     
-    <div class="invest short mobile" style="display: none;" id='invest_short'>
+    <div class="invest short mobile" style="display: none;" id='invest_short' onclick="open_form(this);">
         <b>Name: </b><u>10</u>     
     </div>
     
-    <div class="invest long mobile" style="display: none;" id='invest_long'>
+    <div class="invest long mobile" style="display: none;" id='invest_long' onclick="open_form(this);">
         <b>Name: </b><u>10</u><b> из </b><u>100</u>
         <br>
         <progress max="100" value="10"></progress>
@@ -41,20 +41,26 @@
 
     
     <div id="pelena" >
-        <div id="red_inv">
+        <div id="red_inv" class="modal_form">
+            <input type="text" id="oper_sum">
+            <br>
+            <button id="red_inv_plus_butt" onclick="investing();">+</button>
+            <button id="red_inv_minus_butt" onclick="resting();">-</button>
+            <button id="red_inv_cncl_butt" onclick="close_form();">Отм</button>
         </div>
-        <div id="add_inp">
-            <input type="text" id="sum_prih">
+        <div id="add_inp" class="modal_form">
+            <input type="text" id="sum_prih" placeholder="Сумма">
             <br>
             <select id="plus_reason">            
             </select>
             <br>
-            <textarea id="prih_comment">
+            <textarea id="prih_comment" placeholder="Комментарий">
             </textarea>
             <br>
-            <button id="main_inp_butt" onclick="add_num();">+</button>        
+            <button id="main_inp_butt" onclick="add_num();">+</button>
+            <button id="main_cancel_butt" onclick="close_form();">Отмена</button>
         </div>
-        <div id="red_form" >
+        <div id="red_form" class="modal_form">
             <label id="name_l"> Название:
                 <input type="text" id="name_i">
             </label>
