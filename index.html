@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Расходы</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="expires" content="0">
+<link href="style/index.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="script/index.js"></script>
+</head>
+<body onload="init();" id="body">
+    <div id="oper_data_box">
+            <div id="minus_data" onclick="minus_data();"></div>
+            <div id="oper_dat"></div>
+            <div id="plus_data" onclick="plus_data();"></div>
+        </div>
+    <div id="main_box">
+        <h2>main box</h2>        
+        <h2 id="free_nal">0</h2>
+        <input type="text" id="sum_prih">
+        <br>
+        <select id="plus_reason">            
+        </select>
+        <br>
+        <textarea id="prih_comment">
+        </textarea>
+        <br>
+        <button id="main_inp_butt" onclick="add_num();">+</button>        
+    </div>
+    <div id="add_invest" onclick="open_form();">Новая инвестиция</div>
+    <div class="invest short" style="display: none;" id='invest_short'>
+        <div class="red"></div>
+        <b>Name: </b><u>10</u>
+        <br>
+        <input type="text">
+        <br>
+        <button onclick="investing(this);">+</button>
+        <button onclick="resting(this);">-</button>
+    </div>
+    <div class="invest long" style="display: none;" id='invest_long'>
+        <div class="red" onclick="red_invest();"></div>
+        <b>Name: </b><u>10</u><b> из </b><u>100</u>
+        <br>
+        <progress max="100" value="10"></progress>
+        <br>
+        <input type="text">
+        <br>
+        <button onclick="investing(this);">+</button>
+        <button onclick="resting(this);">-</button>
+    </div>
+    
+    <div id="report_table">
+        <div class="main_rep_str" id="main_rep_str">
+            <div class="rep_str_dat">Дата</div>
+            <div class="rep_str_cash">Сумма</div>
+            <div class="rep_str_comm">Комментарий</div>
+        </div>
+    </div>
+    
+    <div id="pelena">
+        <div id="red_form">
+            <label id="name_l"> Название:
+                <input type="text" id="name_i">
+            </label>
+            <br>
+            <br>
+            <label id="srok_l"> Долгосрочный:
+                <input type="checkbox" id="srok_i" onchange="change_type_invest();">
+            </label>
+            <br>
+            <br>
+            <label id="need_l">
+                Нужно:
+                <input type="text" id="need_i">
+                <br>
+                <br>
+            </label>
+            
+            <button onclick='save_invest();'>Сохранить</button>
+            <button onclick="close_form();">Отменить</button>
+            <button>Удалить</button>
+        </div>
+    </div>
+</body>
+</html>
