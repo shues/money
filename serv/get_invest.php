@@ -6,18 +6,6 @@
 	}
 	mysqli_query($db,'SET NAMES utf8');
 		
-	/*$query = "
-        SELECT 
-            `invest`.*, SUM(`cash`) 
-        FROM 
-            `invest` 
-        LEFT OUTER JOIN 
-            `invest_inp` 
-        ON 
-            `invest`.`id`=`invest_inp`.`invest` 
-        GROUP BY 
-            `name`";
-*/
     $query = "
     SELECT 
         `invest`.*,

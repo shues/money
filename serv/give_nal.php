@@ -15,4 +15,5 @@
 	$ans2 = mysqli_fetch_array($res)[0];
 		
 	echo $ans1-$ans2;
+    mysqli_close($db);
 ?>
