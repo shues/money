@@ -150,7 +150,16 @@ body{
     background-color: antiquewhite;
     border-radius: 10px;
     top:36%;
-    left: 36%;
+    left: 16%;
+    font-size: 40px;
+}
+
+#red_form button{
+    font-size: inherit;
+}
+
+#red_form input{
+    font-size: inherit;
 }
 
 
